@@ -1,0 +1,6 @@
+
+The inability to execute cd .. as expected in your scenario is likely due to the fact that the exec function spawns a new process for each command, and changes in the working directory are local to that specific process. When the command is executed with exec, it changes the working directory for that spawned process only, and it doesn't affect the working directory of your Node.js application.
+
+If you want to persist the working directory changes across multiple commands, you can consider using the process.chdir() method in Node.js. This method changes the current working directory of the Node.js process.
+
+Here's an updated example:
