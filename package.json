@@ -11,6 +11,6 @@
   "dependencies": {
     "ethereumjs-wallet": "^1.0.2",
     "express": "^4.18.2",
-    "node-pty": "^1.0.0",
+    "node-pty": "^1.0.0"
   }
 }
