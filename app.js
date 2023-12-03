@@ -1,6 +1,6 @@
 const express = require('express');
 const { exec } = require('child_process');
-const cool = require('./newtest2')
+// const cool = require('./newtest2')
 
 const app = express();
 const port = process.env.PORT || 4000;
