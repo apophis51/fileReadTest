@@ -3,7 +3,7 @@ const net = require('net');
 
 const client = new net.Socket();
 
-const PORT = 3001;
+const PORT = 5000;
 const HOST = 'localhost';
 
 // Connect to the server
