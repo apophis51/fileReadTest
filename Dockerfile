@@ -8,7 +8,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install
+RUN  apk update && \
+     apk add python3 && \
+    npm install
 
 # Copy the rest of the application files to the container
 COPY . .
