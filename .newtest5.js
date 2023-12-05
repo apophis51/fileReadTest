@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 
 // Replace 'ws://localhost:3000' with the actual URL of your WebSocket server
-const serverUrl = 'ws://localhost:5000';
+const serverUrl = 'https://filereadtest-production.up.railway.app/';
 const ws = new WebSocket(serverUrl);
 
 // Connection event handler

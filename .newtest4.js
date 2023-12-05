@@ -2,7 +2,7 @@ const io = require('socket.io-client');
 
 // Replace 'http://localhost:3000' with the actual URL of your Socket.IO server
 // const socket = io('http://localhost:5000');
-const socket = io('ws://localhost:5000');
+const socket = io('https://filereadtest-production.up.railway.app/');
 
 
 // Listen for the 'connect' event, which is emitted when the connection is established
