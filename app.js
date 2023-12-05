@@ -1,39 +1,36 @@
-const WebSocket = require('ws');
 const http = require('http');
+const express = require('express');
+const socketIo = require('socket.io');
 
-// Create an HTTP server to serve as a basis for WebSocket
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('WebSocket server\n');
-});
-
-// Create a WebSocket server by passing the HTTP server
-const wss = new WebSocket.Server({ server });
-
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+//
 // Set up a connection event handler
-wss.on('connection', (ws) => {
-  console.log('Client connected');
+io.on('connection', (socket) => {
+  console.log('A user connected');
 
-  // Handle messages from clients
-  ws.on('message', (message) => {
-    console.log(`Received message: ${message}`);
-
+  // Handle custom events from the client
+  socket.on('message', (data) => {
+    console.log('Message from client:', data);
+//
     // Broadcast the message to all connected clients
-    wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
+    io.emit('message', data);
   });
 
-  // Handle client disconnection
-  ws.on('close', () => {
-    console.log('Client disconnected');
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
   });
 });
 
-// Start the server on port 3000
+// Serve a simple HTML page
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+// Start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-  console.log(`WebSocket server listening on port ${PORT}`);
+  console.log(`Server (Socket.IO) listening on port ${PORT}`);
 });
