@@ -13,7 +13,7 @@ io.on('connection', (socket) => {
   // Handle custom events from the client
   socket.on('message', (data) => {
     console.log('Message from client:', data);
-
+//
     // Broadcast the message to all connected clients
     io.emit('message', data);
   });
