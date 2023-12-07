@@ -1,3 +1,25 @@
+var pty = require('node-pty');
+
+var shell = 'bash'
+
+var ptyProcess = pty.spawn(shell, [], {
+  name: 'xterm-color',
+  cols: 80,
+  rows: 30,
+  cwd: process.env.HOME,
+  env: process.env
+});
+
+ptyProcess.on('data', (data) => {
+    console.log(`************ stdout: ${data}`);
+    io.emit('money', data.toString());
+  });
+
+ptyProcess.onData((data) => {
+  process.stdout.write(data);
+  io.emit('money', data.toString());
+});
+
 const http = require('http');
 const express = require('express');
 const socketIo = require('socket.io');
@@ -8,15 +30,22 @@ const io = socketIo(server);
 //
 // Set up a connection event handler
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  console.log('A computer connected');
 
   // Handle custom events from the client
   socket.on('message', (data) => {
     console.log('Message from client:', data);
 //
     // Broadcast the message to all connected clients
-    io.emit('message', data);
+    // io.emit('message', data);
+    io.emit('message', 'Thank you for connecting')
   });
+
+  socket.on('terminal', (data) => {
+    ptyProcess.write(data + '\r');
+    console.log('processed: ', data);
+    io.emit('terminal', data);
+  })
 
   // Handle disconnection
   socket.on('disconnect', () => {
