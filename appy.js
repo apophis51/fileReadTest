@@ -1,11 +1,13 @@
 const WebSocket = require('ws');
 const http = require('http');
+const { exec } = require('child_process');
+
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
 
 var pty = require('node-pty');
-var shell = 'bash'
+var shell = 'sh'
 var ptyProcess = pty.spawn(shell, [], {
   name: 'xterm-color',
   cols: 80,
@@ -61,6 +63,15 @@ wss.on('connection', (ws) => {
 
         // let output = data
         // let output = data.slice(0, -39)
+
+
+
+
+
+
+
+
+        
 
         ws.send(JSON.stringify({ message: output }));
         // ws.send({output})
