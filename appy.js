@@ -39,7 +39,7 @@ wss.on('connection', (ws) => {
   
   ws.on('message', (message) => {
     console.log(`Received message: ${message}`);
-    ws.send(JSON.stringify({ message: 'we received your message' }));
+    // ws.send(JSON.stringify({ message: 'we received your message' }));
     //facinating strings act like json
     // let cool = JSON.parse(`${message}`)
     // console.log(cool.message)
@@ -50,7 +50,7 @@ wss.on('connection', (ws) => {
     // Check for the 'terminalEvent' type
     if (parsedMessage.type === 'terminalEvent') {
       // Respond to the terminal event
-      ws.send(JSON.stringify({ message: 'Response to terminal event', type: 'terminalEvent' }));
+      // ws.send(JSON.stringify({ message: 'Response to terminal event', type: 'terminalEvent' }));
 
       let terminalCommand = parsedMessage.data
 
@@ -58,7 +58,8 @@ wss.on('connection', (ws) => {
 
       ptyProcess.on('data', (data) => {
         console.log(`************ stdout: ${data}`);
-        let output = data.replace(/apophis51@Allissa/g, '').replace(/:/g, '').replace(/~/g, '').replace(/\$/g, '')
+        // let output = data.replace(/apophis51@Allissa/g, '').replace(/:/g, '').replace(/~/g, '').replace(/\$/g, '')
+        let output = data
         // let output = JSON.stringify({message: output}).replace('apophis')
 
         // let output = data
