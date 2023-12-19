@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 4000
 
 # Command to run your application
-CMD ["node", "appy.js"]
+CMD ["node", "appyy.js"]
 
 #docker build -t my-express-app .
 

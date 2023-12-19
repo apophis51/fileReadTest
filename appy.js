@@ -1,7 +1,9 @@
 const WebSocket = require('ws');
 const http = require('http');
 const { exec } = require('child_process');
+// The issue you're facing seems to be related to the fact that you are adding a new event listener for the 'data' event inside the 'connection' event handler every time a WebSocket connection is established. This leads to multiple listeners being attached to the same event, causing the 'data' event to be handled multiple times.
 
+// To fix this issue, you should move the 'data' event listener outside of the 'connection' event handler so that it is only added once when the server starts. Here's a modified version of your code:
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
@@ -9,6 +11,14 @@ const wss = new WebSocket.Server({ server });
 var pty = require('node-pty');
 var shell = 'sh'
 var ptyProcess = pty.spawn(shell, [], {
+  name: 'xterm-color',
+  cols: 80,
+  rows: 30,
+  cwd: process.env.HOME,
+  env: process.env
+});
+
+var ptyProcess2 = pty.spawn(shell, [], {
   name: 'xterm-color',
   cols: 80,
   rows: 30,
@@ -54,7 +64,9 @@ wss.on('connection', (ws) => {
 
       let terminalCommand = parsedMessage.data
 
-      ptyProcess.write(terminalCommand + '\r')
+      //ptyProcess.write(terminalCommand + '\r')//bad
+      ptyProcess.write(terminalCommand )
+
 
       ptyProcess.on('data', (data) => {
         console.log(`************ stdout: ${data}`);
