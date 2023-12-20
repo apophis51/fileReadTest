@@ -47,7 +47,7 @@ ptyProcess.on('data', (data) => {
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  ws.send(JSON.stringify({ message: '$' }));
+  ws.send(JSON.stringify({ message: '...' }));
 
   // Listen for messages from clients
   ws.on('message', (message) => {

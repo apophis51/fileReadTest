@@ -1,9 +1,18 @@
 const WebSocket = require('ws');
 const http = require('http');
 const { exec } = require('child_process');
+
+//each time my console.log is reporting more and more duplicate data const WebSocket
 // The issue you're facing seems to be related to the fact that you are adding a new event listener for the 'data' event inside the 'connection' event handler every time a WebSocket connection is established. This leads to multiple listeners being attached to the same event, causing the 'data' event to be handled multiple times.
 
 // To fix this issue, you should move the 'data' event listener outside of the 'connection' event handler so that it is only added once when the server starts. Here's a modified version of your code:
+
+// In this modified version, the 'data' event listener is moved outside of the 'connection' event handler to ensure that it's only added once when the WebSocket server starts. This should help prevent the duplication of messages.
+
+
+
+
+
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
@@ -40,7 +49,7 @@ function removeANSIEscapeCodes(input) {
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  ws.send(JSON.stringify({ message: '$' }));
+  ws.send(JSON.stringify({ message: 'Welcome To Your Virtual Terminal' }));
 
 
   // Listen for messages from clients
