@@ -41,6 +41,7 @@ ptyProcess.on('data', (data) => {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify({ message: output }));
+      console.log('sent to client', JSON.stringify({ message: output }))
     }
   });
 });
@@ -55,6 +56,18 @@ wss.on('connection', (ws) => {
 
     // Parse the incoming message
     const parsedMessage = JSON.parse(message);
+
+    // check for the 'chatMessage' type
+    if (parsedMessage.type === 'chatMessage') {
+      let output = message;
+      console.log('fuck yeah')
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({ message: parsedMessage }));
+          console.log('sent to client', JSON.stringify({ message: parsedMessage }))
+        }
+      });
+    }
 
     // Check for the 'terminalEvent' type
     if (parsedMessage.type === 'terminalEvent') {
