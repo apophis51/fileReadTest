@@ -10,7 +10,13 @@ COPY package*.json ./
 # Install app dependencies
 RUN  apk update && \
      apk add python3 make g++ && \
-    npm install
+    npm install && \
+    apk add go && \
+    cd .. && \
+    cd .. && \
+    go install github.com/ffuf/ffuf@latest && \
+    ln -s ~/go/bin/ffuf /usr/sbin/ffuf
+
 
 # Copy the rest of the application files to the container
 COPY . .
