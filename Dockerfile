@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install app dependencies
 RUN  apk update && \
+     apk add nano && \
      apk add python3 make g++ && \
     npm install && \
     apk add go && \
