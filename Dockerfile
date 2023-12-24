@@ -23,7 +23,7 @@ RUN  apk update && \
     wget http://ffuf.me/wordlist/subdomains.txt && \
     cd .. && \
     apk add bash && \
-    bash 
+    bash
 
 
 # Copy the rest of the application files to the container
