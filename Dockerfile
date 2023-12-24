@@ -16,6 +16,7 @@ RUN  apk update && \
     cd .. && \
     go install github.com/ffuf/ffuf@latest && \
     ln -s ~/go/bin/ffuf /usr/sbin/ffuf && \
+    mkdir wordlists && \
     cd wordlists && \
     wget http://ffuf.me/wordlist/common.txt && \
     wget http://ffuf.me/wordlist/parameters.txt && \
