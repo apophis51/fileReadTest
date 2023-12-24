@@ -5,7 +5,9 @@ const pty = require('node-pty');
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
 
+// var shell = 'sh';
 var shell = 'sh';
+// var shell = 'bash';
 var ptyProcess = pty.spawn(shell, [], {
   name: 'xterm-color',
   cols: 80,

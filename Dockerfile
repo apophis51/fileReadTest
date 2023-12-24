@@ -20,7 +20,10 @@ RUN  apk update && \
     cd wordlists && \
     wget http://ffuf.me/wordlist/common.txt && \
     wget http://ffuf.me/wordlist/parameters.txt && \
-    wget http://ffuf.me/wordlist/subdomains.txt
+    wget http://ffuf.me/wordlist/subdomains.txt && \
+    cd .. && \
+    apk add bash && \
+    bash 
 
 
 # Copy the rest of the application files to the container
