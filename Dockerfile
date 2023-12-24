@@ -15,7 +15,11 @@ RUN  apk update && \
     cd .. && \
     cd .. && \
     go install github.com/ffuf/ffuf@latest && \
-    ln -s ~/go/bin/ffuf /usr/sbin/ffuf
+    ln -s ~/go/bin/ffuf /usr/sbin/ffuf && \
+    cd wordlists && \
+    wget http://ffuf.me/wordlist/common.txt && \
+    wget http://ffuf.me/wordlist/parameters.txt && \
+    wget http://ffuf.me/wordlist/subdomains.txt
 
 
 # Copy the rest of the application files to the container
