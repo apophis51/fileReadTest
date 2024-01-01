@@ -38,12 +38,12 @@ function removeANSIEscapeCodes(input) {
 ptyProcess.on('data', (data) => {
   // Handle 'data' event
   let output = data;
-  console.log(`************ stdout: ${data}`);
+  // console.log(`************ stdout: ${data}`);
 
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify({ message: output }));
-      console.log('sent to client', JSON.stringify({ message: output }))
+      // console.log('sent to client', JSON.stringify({ message: output }))
     }
   });
 });
