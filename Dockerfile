@@ -8,7 +8,7 @@ COPY hashit.sh .
 # Make the script executable
 RUN chmod +x hashit.sh
 
-RUN export PATH=$PATH:/usr/local/hashit.sh
+RUN export PATH=$PATH:/usr/bin/local/hashit.sh
 
 
 
