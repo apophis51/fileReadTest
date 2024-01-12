@@ -9,7 +9,7 @@ COPY hashit.sh .
 WORKDIR /usr/src/app
 
 # Make the script executable
-RUN chmod +x hash_converter.sh
+RUN chmod +x hashit.sh
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
