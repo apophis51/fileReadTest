@@ -5,11 +5,13 @@ WORKDIR /usr/local/bin
 
 COPY hashit.sh .
 
+# Make the script executable
+RUN chmod +x hashit.sh
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Make the script executable
-RUN chmod +x hashit.sh
+
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
