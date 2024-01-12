@@ -1,7 +1,7 @@
 # Use an official Node.js runtime as a base image
 FROM node:14-alpine
 
-WORKDIR /bin
+WORKDIR /usr/local
 
 COPY hashit.sh .
 
