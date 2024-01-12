@@ -1,14 +1,14 @@
 # Use an official Node.js runtime as a base image
 FROM node:14-alpine
 
-WORKDIR /usr/bin/local
+WORKDIR /bin
 
 COPY hashit.sh .
 
 # Make the script executable
 RUN chmod +x hashit.sh
 
-RUN export PATH=$PATH:/usr/bin/local
+# RUN export PATH=$PATH:/usr/bin/local
 
 
 
