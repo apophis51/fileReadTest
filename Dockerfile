@@ -7,7 +7,7 @@ COPY hashit.sh .
 
 # Make the script executable
 RUN mv hashit.sh hashit
-RUN chmod +x hashit.sh
+RUN chmod +x hashit
 
 # RUN export PATH=$PATH:/usr/bin/local
 
